@@ -1489,6 +1489,102 @@ favicon a<!DOCTYPE html>
                 justify-content: center;
             }
         }
+
+        /* Contact Form Styles */
+        .contact-form {
+            max-width: 500px;
+            margin: 32px auto 0;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid rgba(201, 160, 154, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(201, 160, 154, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(201, 160, 154, 0.4);
+        }
+
+        .form-divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 32px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .form-divider::before,
+        .form-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(201, 160, 154, 0.3);
+        }
+
+        .form-success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: var(--success);
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+        }
+
+        .form-success.show {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -2353,6 +2449,32 @@ favicon a<!DOCTYPE html>
                 <h2>Have a workflow problem?</h2>
                 <p>Tell me what's eating your time. I'll find a way to automate it.</p>
 
+                <!-- Contact Form -->
+                <form class="contact-form" action="https://formspree.io/f/xwpkgvpn" method="POST" id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required placeholder="John Smith">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required placeholder="john@company.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Tell Me Your Problem</label>
+                        <textarea id="message" name="message" required placeholder="I spend 3 hours a day on manual data entry..."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">
+                        Send Message
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                    </button>
+                </form>
+
+                <div id="form-success" class="form-success">
+                    Message sent! I'll get back to you within 24 hours.
+                </div>
+
+                <div class="form-divider">or connect directly</div>
+
                 <div class="contact-methods">
                     <a href="mailto:aaishamotan@gmail.com" class="contact-item">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -2371,11 +2493,6 @@ favicon a<!DOCTYPE html>
                         GitHub
                     </a>
                 </div>
-
-                <a href="mailto:aaishamotan@gmail.com" class="btn-primary" style="margin-top: 32px;">
-                    Send Me a Message
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
             </div>
         </div>
     </section>
@@ -2419,6 +2536,38 @@ favicon a<!DOCTYPE html>
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
+        });
+
+        // Contact form handling
+        const form = document.getElementById('contact-form');
+        const successMsg = document.getElementById('form-success');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = form.querySelector('.form-submit');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = 'Sending...';
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    form.style.display = 'none';
+                    successMsg.classList.add('show');
+                    form.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                alert('Oops! There was a problem. Please try emailing me directly at aaishamotan@gmail.com');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
         });
     </script>
 </body>
