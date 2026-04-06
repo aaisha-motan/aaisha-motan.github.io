@@ -12,20 +12,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #060a1f;
-            --bg-secondary: #0a1030;
-            --bg-card: rgba(11, 0, 255, 0.08);
-            --bg-card-hover: rgba(22, 197, 183, 0.1);
-            --text-primary: #e8f0ff;
-            --text-secondary: #9ab8e8;
-            --text-muted: #6b88b8;
-            --accent: #16C5B7;
-            --accent-hover: #00f6ff;
-            --accent-glow: rgba(0, 246, 255, 0.2);
+            --bg-primary: #0a0520;
+            --bg-secondary: #110830;
+            --bg-card: rgba(120, 60, 200, 0.08);
+            --bg-card-hover: rgba(179, 133, 220, 0.12);
+            --text-primary: #ede4ff;
+            --text-secondary: #b8a0e0;
+            --text-muted: #8870b0;
+            --accent: #b385dc;
+            --accent-hover: #d4a8ff;
+            --accent-glow: rgba(179, 133, 220, 0.25);
             --border: rgba(179, 133, 220, 0.2);
             --success: #16C5B7;
-            --gradient-1: linear-gradient(135deg, #0b00ff 0%, #16C5B7 30%, #00f6ff 60%, #b385dc 100%);
-            --gradient-2: linear-gradient(135deg, #060a1f 0%, #0a1030 50%, #0d0533 100%);
+            --gradient-1: linear-gradient(135deg, #7c3aed 0%, #b385dc 25%, #16C5B7 50%, #00f6ff 75%, #d4a8ff 100%);
+            --gradient-2: linear-gradient(135deg, #0a0520 0%, #110830 50%, #0d0533 100%);
+        }
+
+        /* Underwater caustic shimmer */
+        @keyframes caustics {
+            0% { opacity: 0.5; transform: scale(1) translate(0, 0); }
+            33% { opacity: 0.7; transform: scale(1.05) translate(10px, -5px); }
+            66% { opacity: 0.4; transform: scale(0.98) translate(-8px, 8px); }
+            100% { opacity: 0.6; transform: scale(1.03) translate(5px, -3px); }
         }
 
         /* Premium Animations */
@@ -84,7 +92,18 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(180deg, #060a1f 0%, #0a0833 15%, #0d1045 30%, #08082e 50%, #060a1f 70%, #0b0538 85%, #060a1f 100%);
+            background: linear-gradient(180deg,
+                #0a0520 0%,
+                #0d0835 8%,
+                #0e1045 18%,
+                #091540 30%,
+                #071a50 45%,
+                #061848 55%,
+                #081242 68%,
+                #0a0d3a 80%,
+                #0d0830 90%,
+                #0a0520 100%
+            );
             background-attachment: fixed;
             color: var(--text-primary);
             line-height: 1.6;
@@ -100,8 +119,26 @@
             width: 100%;
             height: 100%;
             background-image:
-                linear-gradient(rgba(0, 246, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(179, 133, 220, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(0, 246, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(179, 133, 220, 0.02) 1px, transparent 1px);
+        }
+
+        /* Underwater caustic light overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse 600px 400px at 20% 30%, rgba(22, 197, 183, 0.06) 0%, transparent 70%),
+                radial-gradient(ellipse 500px 350px at 70% 50%, rgba(179, 133, 220, 0.05) 0%, transparent 70%),
+                radial-gradient(ellipse 400px 300px at 40% 80%, rgba(0, 246, 255, 0.04) 0%, transparent 70%),
+                radial-gradient(ellipse 300px 200px at 85% 15%, rgba(124, 58, 237, 0.05) 0%, transparent 70%);
+            animation: caustics 8s ease-in-out infinite alternate;
             background-size: 80px 80px;
             pointer-events: none;
             z-index: -1;
@@ -2783,10 +2820,10 @@
             }
         });
 
-        // Falling & bouncing mermaid pearls
+        // Aquarium: bubbles rising + pearls floating
         const canvas = document.getElementById('pearls');
         const ctx = canvas.getContext('2d');
-        let pearls = [];
+        let particles = [];
         let scrollY = 0;
 
         function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
@@ -2794,92 +2831,132 @@
         window.addEventListener('resize', resizeCanvas);
         window.addEventListener('scroll', () => { scrollY = window.scrollY; });
 
-        const pearlPalette = [
-            [255,255,255],[220,240,255],[22,197,183],[0,246,255],
-            [179,133,220],[11,0,255],[140,200,255],[200,170,240],
-            [255,220,180],[100,255,218],[180,130,255],[0,200,220],
+        const pearlColors = [
+            [255,255,255],[230,220,255],[22,197,183],[0,246,255],
+            [179,133,220],[124,58,237],[140,200,255],[212,168,255],
+            [255,220,240],[100,255,218],[180,130,255],[160,100,240],
         ];
 
-        for (let i = 0; i < 50; i++) {
-            const c = pearlPalette[Math.floor(Math.random() * pearlPalette.length)];
-            pearls.push({
+        // Create bubbles (rise up) + pearls (float gently)
+        for (let i = 0; i < 30; i++) {
+            // Bubbles — transparent, rise upward
+            particles.push({
+                type: 'bubble',
                 x: Math.random() * window.innerWidth,
-                y: -Math.random() * window.innerHeight * 2 - 50,
-                r: Math.random() * 4.5 + 1.5,
-                vx: (Math.random() - 0.5) * 0.6,
-                vy: Math.random() * 0.8 + 0.2,
-                drift: Math.random() * 1.5 + 0.5,
+                y: window.innerHeight + Math.random() * window.innerHeight,
+                r: Math.random() * 6 + 2,
+                speed: Math.random() * 0.8 + 0.3,
+                drift: Math.random() * 2 + 0.5,
                 phase: Math.random() * Math.PI * 2,
-                op: Math.random() * 0.5 + 0.2,
+                op: Math.random() * 0.15 + 0.05,
+            });
+        }
+        for (let i = 0; i < 25; i++) {
+            // Pearls — iridescent, float slowly
+            const c = pearlColors[Math.floor(Math.random() * pearlColors.length)];
+            particles.push({
+                type: 'pearl',
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight * 3,
+                r: Math.random() * 5 + 2,
+                speed: Math.random() * 0.3 + 0.1,
+                drift: Math.random() * 1.2 + 0.3,
+                phase: Math.random() * Math.PI * 2,
+                op: Math.random() * 0.45 + 0.15,
                 c: c,
-                bounces: 0,
-                maxB: Math.floor(Math.random() * 4) + 2,
-                settled: false,
-                timer: 0,
                 shimmer: Math.random() * Math.PI * 2,
+                floatAmp: Math.random() * 20 + 10,
+                floatSpeed: Math.random() * 0.5 + 0.2,
             });
         }
 
-        function animatePearls() {
+        function drawAquarium() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             const t = Date.now() * 0.001;
-            const floor = canvas.height - 50;
 
-            pearls.forEach(p => {
-                if (p.settled) {
-                    p.timer++;
-                    if (p.timer > 180) {
-                        p.y = -Math.random() * 300 - 30;
+            particles.forEach(p => {
+                const parallax = scrollY * (p.type === 'bubble' ? 0.015 : 0.04) * (p.r / 5);
+
+                if (p.type === 'bubble') {
+                    // Rise upward with wobble
+                    p.y -= p.speed;
+                    p.x += Math.sin(t * p.drift + p.phase) * 0.6;
+
+                    if (p.y < -20) {
+                        p.y = canvas.height + Math.random() * 100;
                         p.x = Math.random() * canvas.width;
-                        p.vy = Math.random() * 0.8 + 0.2;
-                        p.vx = (Math.random() - 0.5) * 0.6;
-                        p.bounces = 0;
-                        p.settled = false;
-                        p.timer = 0;
-                        p.op = Math.random() * 0.5 + 0.2;
-                    } else if (p.timer > 130) p.op *= 0.96;
+                    }
+
+                    const dy = p.y + parallax;
+                    if (dy < -30 || dy > canvas.height + 30) return;
+
+                    // Bubble ring
+                    ctx.beginPath();
+                    ctx.arc(p.x, dy, p.r, 0, Math.PI * 2);
+                    ctx.strokeStyle = 'rgba(0, 246, 255, ' + (p.op * 0.6) + ')';
+                    ctx.lineWidth = 0.8;
+                    ctx.stroke();
+
+                    // Bubble fill — very transparent
+                    const bg = ctx.createRadialGradient(p.x - p.r * 0.3, dy - p.r * 0.3, 0, p.x, dy, p.r);
+                    bg.addColorStop(0, 'rgba(179, 133, 220, ' + (p.op * 0.3) + ')');
+                    bg.addColorStop(0.5, 'rgba(0, 246, 255, ' + (p.op * 0.15) + ')');
+                    bg.addColorStop(1, 'rgba(22, 197, 183, ' + (p.op * 0.05) + ')');
+                    ctx.fillStyle = bg;
+                    ctx.fill();
+
+                    // Highlight arc
+                    ctx.beginPath();
+                    ctx.arc(p.x - p.r * 0.2, dy - p.r * 0.2, p.r * 0.35, 0, Math.PI * 1.2);
+                    ctx.strokeStyle = 'rgba(255, 255, 255, ' + (p.op * 0.5) + ')';
+                    ctx.lineWidth = 0.6;
+                    ctx.stroke();
+
                 } else {
-                    p.vy += 0.035;
-                    p.x += Math.sin(t * p.drift + p.phase) * 0.35 + p.vx;
-                    p.y += p.vy;
-                    if (p.y + p.r > floor) {
-                        p.y = floor - p.r;
-                        p.bounces++;
-                        if (p.bounces >= p.maxB) { p.settled = true; p.vy = 0; p.vx = 0; }
-                        else { p.vy = -p.vy * 0.55; p.vx *= 0.85; }
+                    // Pearl — float with gentle sine motion
+                    p.shimmer += 0.02;
+                    const floatY = Math.sin(t * p.floatSpeed + p.phase) * p.floatAmp;
+                    p.x += Math.sin(t * p.drift + p.phase) * 0.2;
+                    p.y -= p.speed * 0.3;
+
+                    if (p.y < -50) {
+                        p.y = canvas.height + Math.random() * 200;
+                        p.x = Math.random() * canvas.width;
                     }
                     if (p.x < -20) p.x = canvas.width + 20;
                     if (p.x > canvas.width + 20) p.x = -20;
+
+                    const dy = p.y + floatY - parallax;
+                    if (dy < -40 || dy > canvas.height + 40) return;
+
+                    const sh = Math.sin(p.shimmer) * 0.15 + 0.85;
+                    const o = p.op * sh;
+                    const c = p.c;
+
+                    // Outer glow
+                    const g = ctx.createRadialGradient(p.x, dy, 0, p.x, dy, p.r * 5);
+                    g.addColorStop(0, 'rgba('+c[0]+','+c[1]+','+c[2]+','+(o*0.3)+')');
+                    g.addColorStop(0.3, 'rgba('+c[0]+','+c[1]+','+c[2]+','+(o*0.1)+')');
+                    g.addColorStop(1, 'rgba('+c[0]+','+c[1]+','+c[2]+',0)');
+                    ctx.beginPath(); ctx.arc(p.x, dy, p.r*5, 0, Math.PI*2); ctx.fillStyle = g; ctx.fill();
+
+                    // Pearl body — iridescent
+                    const pg = ctx.createRadialGradient(p.x-p.r*0.3, dy-p.r*0.3, p.r*0.1, p.x, dy, p.r);
+                    pg.addColorStop(0, 'rgba(255,255,255,'+(o*0.85)+')');
+                    pg.addColorStop(0.35, 'rgba('+c[0]+','+c[1]+','+c[2]+','+(o*0.6)+')');
+                    pg.addColorStop(1, 'rgba('+c[0]+','+c[1]+','+c[2]+','+(o*0.2)+')');
+                    ctx.beginPath(); ctx.arc(p.x, dy, p.r, 0, Math.PI*2); ctx.fillStyle = pg; ctx.fill();
+
+                    // Pearl highlight
+                    ctx.beginPath();
+                    ctx.arc(p.x - p.r*0.25, dy - p.r*0.25, p.r*0.3, 0, Math.PI*2);
+                    ctx.fillStyle = 'rgba(255,255,255,'+(o*0.5)+')';
+                    ctx.fill();
                 }
-
-                p.shimmer += 0.03;
-                const sh = Math.sin(p.shimmer) * 0.15 + 0.85;
-                const o = p.op * sh;
-                const py = p.y - scrollY * 0.025 * (p.r / 4);
-                if (py < -30 || py > canvas.height + 30) return;
-
-                const c = p.c;
-                // Outer glow
-                const g = ctx.createRadialGradient(p.x, py, 0, p.x, py, p.r * 6);
-                g.addColorStop(0, 'rgba('+c[0]+','+c[1]+','+c[2]+','+(o*0.35)+')');
-                g.addColorStop(0.3, 'rgba('+c[0]+','+c[1]+','+c[2]+','+(o*0.12)+')');
-                g.addColorStop(1, 'rgba('+c[0]+','+c[1]+','+c[2]+',0)');
-                ctx.beginPath(); ctx.arc(p.x, py, p.r*6, 0, Math.PI*2); ctx.fillStyle = g; ctx.fill();
-
-                // Pearl body
-                const pg = ctx.createRadialGradient(p.x-p.r*0.3, py-p.r*0.3, p.r*0.1, p.x, py, p.r);
-                pg.addColorStop(0, 'rgba(255,255,255,'+(o*0.9)+')');
-                pg.addColorStop(0.4, 'rgba('+c[0]+','+c[1]+','+c[2]+','+(o*0.65)+')');
-                pg.addColorStop(1, 'rgba('+c[0]+','+c[1]+','+c[2]+','+(o*0.25)+')');
-                ctx.beginPath(); ctx.arc(p.x, py, p.r, 0, Math.PI*2); ctx.fillStyle = pg; ctx.fill();
-
-                // Highlight
-                ctx.beginPath(); ctx.arc(p.x-p.r*0.25, py-p.r*0.25, p.r*0.3, 0, Math.PI*2);
-                ctx.fillStyle = 'rgba(255,255,255,'+(o*0.5)+')'; ctx.fill();
             });
-            requestAnimationFrame(animatePearls);
+            requestAnimationFrame(drawAquarium);
         }
-        animatePearls();
+        drawAquarium();
 
         // Parallax on hero section
         window.addEventListener('scroll', () => {
