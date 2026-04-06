@@ -11,21 +11,65 @@ favicon a<!DOCTYPE html>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #0f0f0f;
-            --bg-card: #161616;
-            --bg-card-hover: #1c1c1c;
-            --text-primary: #f5f5f5;
-            --text-secondary: #a3a3a3;
-            --text-muted: #737373;
-            --accent: #C9A09A;
-            --accent-hover: #DBBAB4;
-            --accent-glow: rgba(201, 160, 154, 0.12);
-            --border: #262626;
+            --bg-primary: #0a0f1a;
+            --bg-secondary: #0d1425;
+            --bg-card: #111b2e;
+            --bg-card-hover: #162240;
+            --text-primary: #f0f4f8;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent: #f0b429;
+            --accent-hover: #f5c842;
+            --accent-glow: rgba(240, 180, 41, 0.15);
+            --border: #1e2d4a;
             --success: #22c55e;
-            --gradient-1: linear-gradient(135deg, #8B6B68 0%, #C9A09A 50%, #E8CCC8 100%);
-            --gradient-2: linear-gradient(135deg, #0a0a0a 0%, #161616 100%);
+            --gradient-1: linear-gradient(135deg, #c49000 0%, #f0b429 50%, #fcd34d 100%);
+            --gradient-2: linear-gradient(135deg, #0a0f1a 0%, #111b2e 100%);
         }
+
+        /* Premium Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(240, 180, 41, 0.1); }
+            50% { box-shadow: 0 0 40px rgba(240, 180, 41, 0.25); }
+        }
+
+        .animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .animate-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .animate-delay-1 { transition-delay: 0.1s; }
+        .animate-delay-2 { transition-delay: 0.2s; }
+        .animate-delay-3 { transition-delay: 0.3s; }
+        .animate-delay-4 { transition-delay: 0.4s; }
 
         * {
             margin: 0;
@@ -54,8 +98,8 @@ favicon a<!DOCTYPE html>
             width: 100%;
             height: 100%;
             background-image:
-                linear-gradient(rgba(201, 160, 154, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(201, 160, 154, 0.02) 1px, transparent 1px);
+                linear-gradient(rgba(240, 180, 41, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(240, 180, 41, 0.02) 1px, transparent 1px);
             background-size: 80px 80px;
             pointer-events: none;
             z-index: -1;
@@ -1602,6 +1646,7 @@ favicon a<!DOCTYPE html>
                 <li><a href="#why-me">Why Me</a></li>
                 <li><a href="#focus">2026 Focus</a></li>
             </ul>
+            <a href="Aaisha_Motan_Resume.pdf" target="_blank" class="nav-cta" style="margin-right: 8px; background: transparent; border: 1px solid var(--accent);">Resume</a>
             <a href="#contact" class="nav-cta">Let's Talk</a>
         </div>
     </nav>
@@ -2503,47 +2548,43 @@ favicon a<!DOCTYPE html>
         </div>
     </footer>
 
-    <!-- Smooth scroll for anchor links -->
     <script>
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        // Contact form handling
-        const form = document.getElementById('contact-form');
-        const successMsg = document.getElementById('form-success');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const submitBtn = form.querySelector('.form-submit');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = 'Sending...';
-            submitBtn.disabled = true;
-
-            try {
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (response.ok) {
-                    form.style.display = 'none';
-                    successMsg.classList.add('show');
-                    form.reset();
-                } else {
-                    throw new Error('Form submission failed');
+        // Scroll-triggered animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
-            } catch (error) {
-                alert('Oops! There was a problem. Please try emailing me directly at aaishamotan@gmail.com');
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        // Add animation classes to sections
+        document.querySelectorAll('section, .project-featured, .service-card, .stat-card, .kpi, .project-stat, .contact-item').forEach((el, i) => {
+            el.classList.add('animate-in');
+            if (i % 4 === 1) el.classList.add('animate-delay-1');
+            if (i % 4 === 2) el.classList.add('animate-delay-2');
+            if (i % 4 === 3) el.classList.add('animate-delay-3');
+            observer.observe(el);
+        });
+
+        // Navbar scroll effect
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(10, 15, 26, 0.95)';
+                nav.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
+            } else {
+                nav.style.background = 'rgba(10, 15, 26, 0.8)';
+                nav.style.boxShadow = 'none';
             }
         });
     </script>
