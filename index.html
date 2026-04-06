@@ -1629,9 +1629,185 @@ favicon a<!DOCTYPE html>
         .form-success.show {
             display: block;
         }
+
+        /* ===== CINEMATIC ANIMATIONS ===== */
+
+        /* Hero entrance */
+        .hero-badge { animation: fadeInUp 0.8s ease both; animation-delay: 0.2s; }
+        .hero h1 { animation: fadeInUp 0.8s ease both; animation-delay: 0.4s; }
+        .hero-description { animation: fadeInUp 0.8s ease both; animation-delay: 0.6s; }
+        .hero-buttons { animation: fadeInUp 0.8s ease both; animation-delay: 0.8s; }
+        .hero-stats { animation: fadeInUp 0.8s ease both; animation-delay: 1.0s; }
+
+        /* Gradient text shimmer */
+        .gradient {
+            background-size: 200% auto !important;
+            animation: shimmer 3s linear infinite;
+        }
+
+        /* Floating badges */
+        .hero-badge { animation: fadeInUp 0.8s ease both, float 4s ease-in-out infinite; animation-delay: 0.2s, 1.5s; }
+
+        /* Logo pulse */
+        .logo-icon {
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        /* Card hover lift */
+        .project-featured,
+        .service-card {
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+        }
+        .project-featured:hover,
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(240, 180, 41, 0.08);
+        }
+
+        /* Stat counter glow on hover */
+        .project-stat {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-stat:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(240, 180, 41, 0.12);
+        }
+
+        /* Tech tags slide in */
+        .tech-tag {
+            opacity: 0;
+            animation: fadeInUp 0.4s ease both;
+        }
+        .visible .tech-tag:nth-child(1) { animation-delay: 0.05s; }
+        .visible .tech-tag:nth-child(2) { animation-delay: 0.1s; }
+        .visible .tech-tag:nth-child(3) { animation-delay: 0.15s; }
+        .visible .tech-tag:nth-child(4) { animation-delay: 0.2s; }
+        .visible .tech-tag:nth-child(5) { animation-delay: 0.25s; }
+        .visible .tech-tag:nth-child(6) { animation-delay: 0.3s; }
+        .visible .tech-tag:nth-child(7) { animation-delay: 0.35s; }
+        .visible .tech-tag:nth-child(8) { animation-delay: 0.4s; }
+        .visible .tech-tag:nth-child(9) { animation-delay: 0.45s; }
+        .visible .tech-tag:nth-child(10) { animation-delay: 0.5s; }
+        .visible .tech-tag:nth-child(11) { animation-delay: 0.55s; }
+        .visible .tech-tag:nth-child(12) { animation-delay: 0.6s; }
+        .visible .tech-tag:nth-child(13) { animation-delay: 0.65s; }
+        .visible .tech-tag:nth-child(14) { animation-delay: 0.7s; }
+
+        /* Section titles slide in from left */
+        .section-label {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .visible .section-label,
+        .section-label.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .section-title {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
+        }
+        .visible .section-title,
+        .section-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Contact items stagger */
+        .contact-item {
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .contact-item:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(240, 180, 41, 0.12);
+        }
+
+        /* Nav link underline animation */
+        .nav-links a {
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* CTA button shine effect */
+        .nav-cta {
+            position: relative;
+            overflow: hidden;
+        }
+        .nav-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.5s ease;
+        }
+        .nav-cta:hover::before {
+            left: 100%;
+        }
+
+        /* Smooth page load */
+        body {
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        /* Project features list stagger */
+        .project-features li {
+            opacity: 0;
+            transform: translateX(-15px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .visible .project-features li:nth-child(1) { transition-delay: 0.1s; }
+        .visible .project-features li:nth-child(2) { transition-delay: 0.15s; }
+        .visible .project-features li:nth-child(3) { transition-delay: 0.2s; }
+        .visible .project-features li:nth-child(4) { transition-delay: 0.25s; }
+        .visible .project-features li:nth-child(5) { transition-delay: 0.3s; }
+        .visible .project-features li:nth-child(6) { transition-delay: 0.35s; }
+        .visible .project-features li:nth-child(7) { transition-delay: 0.4s; }
+        .visible .project-features li:nth-child(8) { transition-delay: 0.45s; }
+        .visible .project-features li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* About image entrance */
+        .about-image {
+            animation: scaleIn 0.8s ease both;
+            animation-delay: 0.3s;
+        }
+
+        /* Scroll progress bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--gradient-1);
+            z-index: 10000;
+            transition: width 0.1s linear;
+        }
     </style>
 </head>
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress" style="width: 0%"></div>
+
     <!-- Navigation -->
     <nav>
         <div class="container">
@@ -2561,22 +2737,33 @@ favicon a<!DOCTYPE html>
             });
         });
 
-        // Scroll-triggered animations
+        // Scroll-triggered animations with stagger
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    // Also trigger children animations
+                    entry.target.querySelectorAll('.tech-tag, .project-features li').forEach(child => {
+                        child.style.opacity = '1';
+                        child.style.transform = 'translateX(0) translateY(0)';
+                    });
                 }
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
-        // Add animation classes to sections
-        document.querySelectorAll('section, .project-featured, .service-card, .stat-card, .kpi, .project-stat, .contact-item').forEach((el, i) => {
+        // Observe all animatable elements
+        document.querySelectorAll('section, .project-featured, .service-card, .stat-card, .project-stat, .contact-item, .about-text, .about-image, .section-label, .section-title, .cta-box, .project-details').forEach((el, i) => {
             el.classList.add('animate-in');
-            if (i % 4 === 1) el.classList.add('animate-delay-1');
-            if (i % 4 === 2) el.classList.add('animate-delay-2');
-            if (i % 4 === 3) el.classList.add('animate-delay-3');
             observer.observe(el);
+        });
+
+        // Scroll progress bar
+        const progressBar = document.getElementById('scroll-progress');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            progressBar.style.width = scrollPercent + '%';
         });
 
         // Navbar scroll effect
@@ -2589,6 +2776,55 @@ favicon a<!DOCTYPE html>
                 nav.style.background = 'rgba(10, 15, 26, 0.8)';
                 nav.style.boxShadow = 'none';
             }
+        });
+
+        // Parallax on hero section
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero-content');
+            if (hero && window.scrollY < 800) {
+                hero.style.transform = 'translateY(' + (window.scrollY * 0.15) + 'px)';
+                hero.style.opacity = 1 - (window.scrollY / 800);
+            }
+        });
+
+        // Typing effect on hero gradient text
+        const gradientEl = document.querySelector('.gradient');
+        if (gradientEl) {
+            const text = gradientEl.textContent;
+            gradientEl.textContent = '';
+            gradientEl.style.borderRight = '2px solid var(--accent)';
+            let i = 0;
+            const typeInterval = setInterval(() => {
+                gradientEl.textContent += text[i];
+                i++;
+                if (i >= text.length) {
+                    clearInterval(typeInterval);
+                    setTimeout(() => { gradientEl.style.borderRight = 'none'; }, 500);
+                }
+            }, 50);
+        }
+
+        // Counter animation for stat values
+        document.querySelectorAll('.project-stat-value').forEach(el => {
+            const io = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting) {
+                    const text = el.textContent;
+                    const num = parseInt(text.replace(/[^0-9]/g, ''));
+                    if (!isNaN(num) && num > 0 && num < 10000) {
+                        const suffix = text.replace(/[0-9,]/g, '');
+                        const prefix = text.match(/^[^0-9]*/)?.[0] || '';
+                        let current = 0;
+                        const step = Math.ceil(num / 40);
+                        const counter = setInterval(() => {
+                            current += step;
+                            if (current >= num) { current = num; clearInterval(counter); }
+                            el.textContent = prefix + current.toLocaleString() + suffix;
+                        }, 30);
+                    }
+                    io.unobserve(el);
+                }
+            }, { threshold: 0.5 });
+            io.observe(el);
         });
     </script>
 </body>
