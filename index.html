@@ -12,20 +12,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0a1614;
-            --bg-secondary: #0d1f1b;
-            --bg-card: #112926;
-            --bg-card-hover: #153832;
-            --text-primary: #e8f5f2;
-            --text-secondary: #8abab0;
-            --text-muted: #5a9488;
-            --accent: #2dd4a8;
-            --accent-hover: #5eead4;
-            --accent-glow: rgba(45, 212, 168, 0.15);
-            --border: #1a3d36;
-            --success: #2dd4a8;
-            --gradient-1: linear-gradient(135deg, #0d9488 0%, #2dd4a8 50%, #5eead4 100%);
-            --gradient-2: linear-gradient(135deg, #0a1614 0%, #112926 100%);
+            --bg-primary: #060a1f;
+            --bg-secondary: #0a1030;
+            --bg-card: rgba(11, 0, 255, 0.08);
+            --bg-card-hover: rgba(22, 197, 183, 0.1);
+            --text-primary: #e8f0ff;
+            --text-secondary: #9ab8e8;
+            --text-muted: #6b88b8;
+            --accent: #16C5B7;
+            --accent-hover: #00f6ff;
+            --accent-glow: rgba(0, 246, 255, 0.2);
+            --border: rgba(179, 133, 220, 0.2);
+            --success: #16C5B7;
+            --gradient-1: linear-gradient(135deg, #0b00ff 0%, #16C5B7 30%, #00f6ff 60%, #b385dc 100%);
+            --gradient-2: linear-gradient(135deg, #060a1f 0%, #0a1030 50%, #0d0533 100%);
         }
 
         /* Premium Animations */
@@ -54,8 +54,8 @@
             50% { transform: translateY(-8px); }
         }
         @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 20px rgba(45, 212, 168, 0.1); }
-            50% { box-shadow: 0 0 40px rgba(45, 212, 168, 0.25); }
+            0%, 100% { box-shadow: 0 0 20px rgba(22, 197, 183, 0.1); }
+            50% { box-shadow: 0 0 40px rgba(22, 197, 183, 0.25); }
         }
 
         .animate-in {
@@ -84,7 +84,8 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
+            background: linear-gradient(180deg, #060a1f 0%, #0a0833 15%, #0d1045 30%, #08082e 50%, #060a1f 70%, #0b0538 85%, #060a1f 100%);
+            background-attachment: fixed;
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
@@ -99,8 +100,8 @@
             width: 100%;
             height: 100%;
             background-image:
-                linear-gradient(rgba(45, 212, 168, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(45, 212, 168, 0.02) 1px, transparent 1px);
+                linear-gradient(rgba(0, 246, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(179, 133, 220, 0.03) 1px, transparent 1px);
             background-size: 80px 80px;
             pointer-events: none;
             z-index: -1;
@@ -272,7 +273,7 @@
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(45, 212, 168, 0.3);
+            box-shadow: 0 20px 40px rgba(22, 197, 183, 0.3);
         }
 
         .btn-secondary {
@@ -1356,7 +1357,7 @@
             right: -200px;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(45, 212, 168, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(22, 197, 183, 0.08) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -1364,8 +1365,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: linear-gradient(135deg, rgba(45, 212, 168, 0.2), rgba(94, 234, 212, 0.2));
-            border: 1px solid rgba(45, 212, 168, 0.3);
+            background: linear-gradient(135deg, rgba(22, 197, 183, 0.2), rgba(0, 246, 255, 0.2));
+            border: 1px solid rgba(22, 197, 183, 0.3);
             padding: 8px 16px;
             border-radius: 100px;
             font-size: 0.9rem;
@@ -1557,7 +1558,7 @@
         .form-group textarea {
             width: 100%;
             padding: 14px 16px;
-            border: 1px solid rgba(45, 212, 168, 0.3);
+            border: 1px solid rgba(22, 197, 183, 0.3);
             border-radius: 8px;
             background: rgba(255, 255, 255, 0.8);
             color: var(--text-primary);
@@ -1570,7 +1571,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(45, 212, 168, 0.2);
+            box-shadow: 0 0 0 3px rgba(22, 197, 183, 0.2);
         }
 
         .form-group textarea {
@@ -1597,7 +1598,7 @@
 
         .form-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(45, 212, 168, 0.4);
+            box-shadow: 0 8px 25px rgba(22, 197, 183, 0.4);
         }
 
         .form-divider {
@@ -1614,7 +1615,7 @@
             content: '';
             flex: 1;
             height: 1px;
-            background: rgba(45, 212, 168, 0.3);
+            background: rgba(22, 197, 183, 0.3);
         }
 
         .form-success {
@@ -1662,7 +1663,7 @@
         .project-featured:hover,
         .service-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 20px 60px rgba(45, 212, 168, 0.08);
+            box-shadow: 0 20px 60px rgba(22, 197, 183, 0.08);
         }
 
         /* Stat counter glow on hover */
@@ -1671,7 +1672,7 @@
         }
         .project-stat:hover {
             transform: scale(1.05);
-            box-shadow: 0 8px 30px rgba(45, 212, 168, 0.12);
+            box-shadow: 0 8px 30px rgba(22, 197, 183, 0.12);
         }
 
         /* Tech tags slide in */
@@ -1723,7 +1724,7 @@
         }
         .contact-item:hover {
             transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 12px 40px rgba(45, 212, 168, 0.12);
+            box-shadow: 0 12px 40px rgba(22, 197, 183, 0.12);
         }
 
         /* Nav link underline animation */
@@ -2774,92 +2775,108 @@
         const nav = document.querySelector('nav');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                nav.style.background = 'rgba(10, 22, 20, 0.95)';
+                nav.style.background = 'rgba(6, 10, 31, 0.95)';
                 nav.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
             } else {
-                nav.style.background = 'rgba(10, 22, 20, 0.8)';
+                nav.style.background = 'rgba(6, 10, 31, 0.8)';
                 nav.style.boxShadow = 'none';
             }
         });
 
-        // Floating pearl particles
+        // Falling & bouncing mermaid pearls
         const canvas = document.getElementById('pearls');
         const ctx = canvas.getContext('2d');
         let pearls = [];
         let scrollY = 0;
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
         window.addEventListener('scroll', () => { scrollY = window.scrollY; });
 
-        // Create pearls
-        for (let i = 0; i < 35; i++) {
+        const pearlPalette = [
+            [255,255,255],[220,240,255],[22,197,183],[0,246,255],
+            [179,133,220],[11,0,255],[140,200,255],[200,170,240],
+            [255,220,180],[100,255,218],[180,130,255],[0,200,220],
+        ];
+
+        for (let i = 0; i < 50; i++) {
+            const c = pearlPalette[Math.floor(Math.random() * pearlPalette.length)];
             pearls.push({
                 x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                baseY: Math.random() * window.innerHeight,
-                radius: Math.random() * 3 + 1,
-                speedX: (Math.random() - 0.5) * 0.3,
-                speedY: Math.random() * 0.2 + 0.1,
-                drift: Math.random() * 2 + 1,
+                y: -Math.random() * window.innerHeight * 2 - 50,
+                r: Math.random() * 4.5 + 1.5,
+                vx: (Math.random() - 0.5) * 0.6,
+                vy: Math.random() * 0.8 + 0.2,
+                drift: Math.random() * 1.5 + 0.5,
                 phase: Math.random() * Math.PI * 2,
-                opacity: Math.random() * 0.4 + 0.1,
-                // Pearl colors: mix of whites, seafoam, aqua
-                color: [
-                    'rgba(232, 245, 242,',  // pearl white
-                    'rgba(94, 234, 212,',   // seafoam
-                    'rgba(45, 212, 168,',   // teal
-                    'rgba(200, 230, 225,',  // light aqua
-                    'rgba(255, 245, 235,',  // warm pearl
-                ][Math.floor(Math.random() * 5)],
+                op: Math.random() * 0.5 + 0.2,
+                c: c,
+                bounces: 0,
+                maxB: Math.floor(Math.random() * 4) + 2,
+                settled: false,
+                timer: 0,
+                shimmer: Math.random() * Math.PI * 2,
             });
         }
 
         function animatePearls() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            const time = Date.now() * 0.001;
+            const t = Date.now() * 0.001;
+            const floor = canvas.height - 50;
 
             pearls.forEach(p => {
-                // Float upward with sine wave drift
-                p.y -= p.speedY;
-                p.x += Math.sin(time * p.drift + p.phase) * 0.3 + p.speedX;
-
-                // Scroll influence — pearls drift with scroll
-                const scrollOffset = scrollY * 0.02 * p.drift;
-
-                // Reset when off screen
-                if (p.y < -10) {
-                    p.y = canvas.height + 10;
-                    p.x = Math.random() * canvas.width;
+                if (p.settled) {
+                    p.timer++;
+                    if (p.timer > 180) {
+                        p.y = -Math.random() * 300 - 30;
+                        p.x = Math.random() * canvas.width;
+                        p.vy = Math.random() * 0.8 + 0.2;
+                        p.vx = (Math.random() - 0.5) * 0.6;
+                        p.bounces = 0;
+                        p.settled = false;
+                        p.timer = 0;
+                        p.op = Math.random() * 0.5 + 0.2;
+                    } else if (p.timer > 130) p.op *= 0.96;
+                } else {
+                    p.vy += 0.035;
+                    p.x += Math.sin(t * p.drift + p.phase) * 0.35 + p.vx;
+                    p.y += p.vy;
+                    if (p.y + p.r > floor) {
+                        p.y = floor - p.r;
+                        p.bounces++;
+                        if (p.bounces >= p.maxB) { p.settled = true; p.vy = 0; p.vx = 0; }
+                        else { p.vy = -p.vy * 0.55; p.vx *= 0.85; }
+                    }
+                    if (p.x < -20) p.x = canvas.width + 20;
+                    if (p.x > canvas.width + 20) p.x = -20;
                 }
-                if (p.x < -10) p.x = canvas.width + 10;
-                if (p.x > canvas.width + 10) p.x = -10;
 
-                const drawY = (p.y - scrollOffset % canvas.height + canvas.height) % canvas.height;
+                p.shimmer += 0.03;
+                const sh = Math.sin(p.shimmer) * 0.15 + 0.85;
+                const o = p.op * sh;
+                const py = p.y - scrollY * 0.025 * (p.r / 4);
+                if (py < -30 || py > canvas.height + 30) return;
 
-                // Draw pearl with glow
-                const glow = p.radius * 4;
-                const gradient = ctx.createRadialGradient(p.x, drawY, 0, p.x, drawY, glow);
-                gradient.addColorStop(0, p.color + (p.opacity * 0.8) + ')');
-                gradient.addColorStop(0.4, p.color + (p.opacity * 0.3) + ')');
-                gradient.addColorStop(1, p.color + '0)');
+                const c = p.c;
+                // Outer glow
+                const g = ctx.createRadialGradient(p.x, py, 0, p.x, py, p.r * 6);
+                g.addColorStop(0, 'rgba('+c[0]+','+c[1]+','+c[2]+','+(o*0.35)+')');
+                g.addColorStop(0.3, 'rgba('+c[0]+','+c[1]+','+c[2]+','+(o*0.12)+')');
+                g.addColorStop(1, 'rgba('+c[0]+','+c[1]+','+c[2]+',0)');
+                ctx.beginPath(); ctx.arc(p.x, py, p.r*6, 0, Math.PI*2); ctx.fillStyle = g; ctx.fill();
 
-                ctx.beginPath();
-                ctx.arc(p.x, drawY, glow, 0, Math.PI * 2);
-                ctx.fillStyle = gradient;
-                ctx.fill();
+                // Pearl body
+                const pg = ctx.createRadialGradient(p.x-p.r*0.3, py-p.r*0.3, p.r*0.1, p.x, py, p.r);
+                pg.addColorStop(0, 'rgba(255,255,255,'+(o*0.9)+')');
+                pg.addColorStop(0.4, 'rgba('+c[0]+','+c[1]+','+c[2]+','+(o*0.65)+')');
+                pg.addColorStop(1, 'rgba('+c[0]+','+c[1]+','+c[2]+','+(o*0.25)+')');
+                ctx.beginPath(); ctx.arc(p.x, py, p.r, 0, Math.PI*2); ctx.fillStyle = pg; ctx.fill();
 
-                // Inner bright core
-                ctx.beginPath();
-                ctx.arc(p.x, drawY, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = p.color + (p.opacity + 0.2) + ')';
-                ctx.fill();
+                // Highlight
+                ctx.beginPath(); ctx.arc(p.x-p.r*0.25, py-p.r*0.25, p.r*0.3, 0, Math.PI*2);
+                ctx.fillStyle = 'rgba(255,255,255,'+(o*0.5)+')'; ctx.fill();
             });
-
             requestAnimationFrame(animatePearls);
         }
         animatePearls();
