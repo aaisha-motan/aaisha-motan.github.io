@@ -59,13 +59,12 @@
         }
 
         .animate-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
+            opacity: 1;
+            transform: none;
         }
         .animate-in.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: none;
         }
         .animate-delay-1 { transition-delay: 0.1s; }
         .animate-delay-2 { transition-delay: 0.2s; }
@@ -1674,47 +1673,20 @@
             box-shadow: 0 8px 30px rgba(167, 139, 250, 0.12);
         }
 
-        /* Tech tags slide in */
+        /* Tech tags - no scroll animation */
         .tech-tag {
-            opacity: 0;
-            animation: fadeInUp 0.4s ease both;
-        }
-        .visible .tech-tag:nth-child(1) { animation-delay: 0.05s; }
-        .visible .tech-tag:nth-child(2) { animation-delay: 0.1s; }
-        .visible .tech-tag:nth-child(3) { animation-delay: 0.15s; }
-        .visible .tech-tag:nth-child(4) { animation-delay: 0.2s; }
-        .visible .tech-tag:nth-child(5) { animation-delay: 0.25s; }
-        .visible .tech-tag:nth-child(6) { animation-delay: 0.3s; }
-        .visible .tech-tag:nth-child(7) { animation-delay: 0.35s; }
-        .visible .tech-tag:nth-child(8) { animation-delay: 0.4s; }
-        .visible .tech-tag:nth-child(9) { animation-delay: 0.45s; }
-        .visible .tech-tag:nth-child(10) { animation-delay: 0.5s; }
-        .visible .tech-tag:nth-child(11) { animation-delay: 0.55s; }
-        .visible .tech-tag:nth-child(12) { animation-delay: 0.6s; }
-        .visible .tech-tag:nth-child(13) { animation-delay: 0.65s; }
-        .visible .tech-tag:nth-child(14) { animation-delay: 0.7s; }
-
-        /* Section titles slide in from left */
-        .section-label {
-            opacity: 0;
-            transform: translateX(-20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        .visible .section-label,
-        .section-label.visible {
             opacity: 1;
-            transform: translateX(0);
+        }
+
+        /* Section titles - always visible */
+        .section-label {
+            opacity: 1;
+            transform: none;
         }
 
         .section-title {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
-        }
-        .visible .section-title,
-        .section-title.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: none;
         }
 
         /* Contact items stagger */
@@ -1770,23 +1742,8 @@
 
         /* Project features list stagger */
         .project-features li {
-            opacity: 0;
-            transform: translateX(-15px);
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-        .visible .project-features li:nth-child(1) { transition-delay: 0.1s; }
-        .visible .project-features li:nth-child(2) { transition-delay: 0.15s; }
-        .visible .project-features li:nth-child(3) { transition-delay: 0.2s; }
-        .visible .project-features li:nth-child(4) { transition-delay: 0.25s; }
-        .visible .project-features li:nth-child(5) { transition-delay: 0.3s; }
-        .visible .project-features li:nth-child(6) { transition-delay: 0.35s; }
-        .visible .project-features li:nth-child(7) { transition-delay: 0.4s; }
-        .visible .project-features li:nth-child(8) { transition-delay: 0.45s; }
-        .visible .project-features li:nth-child(9) { transition-delay: 0.5s; }
-        .visible .project-features li:nth-child(10) { transition-delay: 0.55s; }
-        .visible .project-features li {
             opacity: 1;
-            transform: translateX(0);
+            transform: none;
         }
 
         /* About image entrance */
