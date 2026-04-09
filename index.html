@@ -1782,6 +1782,8 @@
         .visible .project-features li:nth-child(6) { transition-delay: 0.35s; }
         .visible .project-features li:nth-child(7) { transition-delay: 0.4s; }
         .visible .project-features li:nth-child(8) { transition-delay: 0.45s; }
+        .visible .project-features li:nth-child(9) { transition-delay: 0.5s; }
+        .visible .project-features li:nth-child(10) { transition-delay: 0.55s; }
         .visible .project-features li {
             opacity: 1;
             transform: translateX(0);
@@ -1827,8 +1829,10 @@
                 <li><a href="#why-me">Why Me</a></li>
                 <li><a href="#focus">2026 Focus</a></li>
             </ul>
-            <a href="Aaisha_Motan_Resume.pdf" target="_blank" class="nav-cta" style="margin-right: 8px; background: transparent; border: 1px solid var(--accent);">Resume</a>
-            <a href="#contact" class="nav-cta">Let's Talk</a>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <a href="Aaisha_Motan_Resume.pdf" target="_blank" class="nav-cta" style="background: transparent; border: 1px solid var(--accent);">Resume</a>
+                <a href="#contact" class="nav-cta">Let's Talk</a>
+            </div>
         </div>
     </nav>
 
@@ -1994,7 +1998,7 @@
                     </span>
                     <h3>Knowledgebase: Meeting Intelligence Platform + Calendar Dashboard</h3>
                     <p class="project-featured-description">
-                        A production RAG system with a full Meeting Calendar Dashboard that transforms 1,900+ meeting recordings into queryable knowledge, automated reports, team performance scoring, and real-time analytics. Built for a US-based digital marketing agency managing 17 team members across 3 Fathom accounts.
+                        A production RAG system with a full Meeting Calendar Dashboard that transforms 1,900+ meeting recordings into queryable knowledge, automated reports, team performance scoring, and real-time analytics. Built for a US-based digital marketing agency managing 23 team members across 4 Fathom accounts with webhook-based instant meeting detection.
                     </p>
                 </div>
 
@@ -2002,15 +2006,15 @@
                     <div class="project-stats">
                         <div class="project-stat-grid">
                             <div class="project-stat">
-                                <div class="project-stat-value">1,911</div>
+                                <div class="project-stat-value">1,900+</div>
                                 <div class="project-stat-label">Meetings Indexed</div>
                             </div>
                             <div class="project-stat">
-                                <div class="project-stat-value">15</div>
+                                <div class="project-stat-value">23</div>
                                 <div class="project-stat-label">Team Members Scored</div>
                             </div>
                             <div class="project-stat">
-                                <div class="project-stat-value">7</div>
+                                <div class="project-stat-value">10</div>
                                 <div class="project-stat-label">Automated Cron Jobs</div>
                             </div>
                             <div class="project-stat">
@@ -2040,14 +2044,16 @@
 
                         <h4>Key Features</h4>
                         <ul class="project-features">
-                            <li>Meeting Calendar Dashboard with Google Calendar-style view, color-coded by recorder</li>
-                            <li>Multi-account Fathom integration (3 accounts with automatic deduplication)</li>
-                            <li>Team Performance Scoring with 4 frameworks (AM, Content, BD/Sales, Tech) including Rich's Assessment</li>
-                            <li>DGS Action Items: 82 items from 13 meetings with Gemini-extracted context</li>
-                            <li>Automated weekly reports: AM, Sandler sales analysis, daily briefings</li>
-                            <li>AI-generated meeting briefs, team profiles, and pipeline opportunities</li>
-                            <li>Hourly Fathom fetch with auto-triggers (DGS summaries, Sandler scoring, action items)</li>
-                            <li>All dashboard data auto-updates incrementally to minimize API usage</li>
+                            <li>Meeting Calendar Dashboard with Google Calendar-style view, color-coded by 4 Fathom recorders</li>
+                            <li>Multi-account Fathom integration (4 accounts) with webhook-based instant meeting detection and automatic deduplication</li>
+                            <li>Team Performance Scoring with 4 frameworks (AM, Content/Off-page, BD/Sales, Tech/Dev) — 23 members scored weekly</li>
+                            <li>DGS Action Items: 82+ items from 13 meetings with Gemini-extracted context and task accountability tracking</li>
+                            <li>Automated weekly reports: AM before/after meeting, Sandler sales analysis, daily briefings, API usage tracking</li>
+                            <li>AI-generated meeting briefs, team profiles, pipeline opportunities, and personalized DGS summaries for 12 members</li>
+                            <li>Fathom fetch with auto-triggers: new meetings instantly trigger DGS summaries, Sandler scoring, action items, and Discord notifications</li>
+                            <li>Incremental data pipeline: briefs, profiles, actions, and pipeline only process new data to minimize API usage</li>
+                            <li>Off-server backup system with daily automated backups to Hetzner Storage Box (1TB)</li>
+                            <li>RAG query engine with Pinecone vector search across 3 indexes (DGS, AM, Sales) with 1,100+ embeddings</li>
                         </ul>
 
                         <div class="project-links">
@@ -2069,7 +2075,7 @@
                     </span>
                     <h3>AI Visibility Tracker Pro</h3>
                     <p class="project-featured-description">
-                        A full-stack SaaS platform that tracks brand visibility across 4 AI engines — ChatGPT, Perplexity, Google AI Overview, and Gemini. Uses real browser automation for live responses (not API training data), with position tracking, trend analysis, and client-facing PDF reports. Managing 43 active clients.
+                        A full-stack SaaS platform that tracks brand visibility across 4 AI engines — ChatGPT, Perplexity, Google AI Overview, and Gemini. Uses real browser automation for live responses (not cached API training data), with foolproof position detection, Otterly-style trend analysis, scheduled auto-scans, and branded PDF reports. Managing 43 active clients with 200+ tracked prompts across 6 categories.
                     </p>
                 </div>
 
@@ -2128,6 +2134,78 @@
 
                         <div class="project-links">
                             <a href="https://github.com/aaisha-motan/bliss-ai-visibility-tool" target="_blank" class="project-link">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Project: Aaisha Dashboard -->
+            <div class="project-featured" style="margin-top: 48px;">
+                <div class="project-featured-header">
+                    <span class="project-badge">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+                        Production System
+                    </span>
+                    <h3>Work Intelligence Dashboard</h3>
+                    <p class="project-featured-description">
+                        A personal work intelligence dashboard that auto-syncs daily from meeting transcripts, git commits across 4 repositories, and team scoring data. Features a Kanban pipeline, quarterly goal tracking, multi-metric trend charts, and performance scoring — all populated with real data extracted via AI from meeting recordings.
+                    </p>
+                </div>
+
+                <div class="project-featured-body">
+                    <div class="project-stats">
+                        <div class="project-stat-grid">
+                            <div class="project-stat">
+                                <div class="project-stat-value">6</div>
+                                <div class="project-stat-label">Dashboard Pages</div>
+                            </div>
+                            <div class="project-stat">
+                                <div class="project-stat-value">4</div>
+                                <div class="project-stat-label">Repo Sources Synced</div>
+                            </div>
+                            <div class="project-stat">
+                                <div class="project-stat-value">Daily</div>
+                                <div class="project-stat-label">Auto-Sync Cron</div>
+                            </div>
+                            <div class="project-stat">
+                                <div class="project-stat-value">Real-Time</div>
+                                <div class="project-stat-label">Meeting Data</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-details">
+                        <h4>Tech Stack</h4>
+                        <div class="project-tech-stack">
+                            <span class="tech-tag">React 18</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Express</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Prisma ORM</span>
+                            <span class="tech-tag">Recharts</span>
+                            <span class="tech-tag">Vite</span>
+                            <span class="tech-tag">Cron Jobs</span>
+                            <span class="tech-tag">Gemini AI</span>
+                            <span class="tech-tag">Hetzner VPS</span>
+                        </div>
+
+                        <h4>Key Features</h4>
+                        <ul class="project-features">
+                            <li>Overview page with 5 KPI cards, multi-metric trend chart (7d/30d/60d/90d + custom range), and performance scoring gauge</li>
+                            <li>Kanban pipeline with drag-drop, 4 columns (To Do → In Progress → Review → Done), priority colors, and source badges</li>
+                            <li>Team Requests tab: tabular format with requester tracking, priority, quarter, meeting source, and status filters</li>
+                            <li>Meeting comments section with AI-powered sentiment analysis (positive/concern/neutral) extracted from transcripts</li>
+                            <li>Quarterly Goals with progress rings, completion tracking, and interactive sliders</li>
+                            <li>Daily auto-sync cron: pulls git commits from 4 repos, team requests from meetings, and scoring data</li>
+                            <li>Activity log tracking all daily work across projects with category classification</li>
+                            <li>Milestones tracking with filterable stats cards and pagination</li>
+                        </ul>
+
+                        <div class="project-links">
+                            <a href="https://github.com/aaisha-motan/aaisha-dashboard" target="_blank" class="project-link">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
                                 View on GitHub
                             </a>
