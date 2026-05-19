@@ -1,5 +1,7 @@
 # CLAUDE.md - Portfolio Project Memory
 
+> **⬆ Master rules first:** See [`/root/.claude/CLAUDE.md`](/root/.claude/CLAUDE.md) for VPS-wide hard rules and conventions. This file adds Portfolio-specific knowledge on top.
+
 ## Project Overview
 
 Personal portfolio website for **Aaisha Motan** (AI Developer).
